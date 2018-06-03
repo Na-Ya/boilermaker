@@ -5,6 +5,7 @@ const router = require('express').Router();
 router.use('/placeholder1', require('./placeholder1'));
 router.use('/placeholder2', require('./placeholder2'));
 
+
 //Login route for /api/login
 router.post('/login', (req, res, next) => {
     User.findOne({

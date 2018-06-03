@@ -34,7 +34,7 @@ User.addHook('beforeUpdate', (instance) => {
 // instance methods
 User.prototype.correctPassword = function (candidatePassword) {
     //returns true if password matches
-    return this.Model.encryptPassword(candidatePassword, this.salt) === this.password;
+    return User.encryptPassword(candidatePassword, this.salt) === this.password;
 };
 
 //sanitize method ensures you don't send any more information than needed down to the client.
