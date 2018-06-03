@@ -4,9 +4,30 @@ const morgan = require('morgan');
 const path = require('path');
 const bodyParser = require('body-parser');
 const { db } = require('./database');
+const session = require('express-session');
+const passport = require('passport');
 
 //logging middleware
 app.use(morgan('dev'));
+
+// configure and create the database store so that sessions are saved after restarting server
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const dbStore = new SequelizeStore({ db });
+
+//sync db
+dbStore.sync();
+
+//session middleware
+app.use(session({
+    secret: process.env.SESSION_SECRET || 'secret SECRETS',
+    store: dbStore,
+    resave: false,
+    saveUninitialized: false
+  }));
+
+//initializing passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 //static middleware, serving up files in public directory
 app.use(express.static(path.join(__dirname, '../public')));
