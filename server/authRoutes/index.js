@@ -3,6 +3,9 @@ const router = require('express').Router();
 
 //mounted on '/auth', forwards to subdirectory
 
+//forwards requests to /auth/google to googleAuth subrouter
+router.use('/google', require('./googleAuth.js'));
+
 //POST Login route for /auth/login
 router.post('/login', (req, res, next) => {
 	User.findOne({

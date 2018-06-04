@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Login from './Login';
 
 function Navbar (props) {
 
@@ -9,6 +10,7 @@ function Navbar (props) {
     <nav>
       <h3># { currentChannel }</h3>
       <h2>NAME OF CHANNEL</h2>
+      <Login />
     </nav>
   );
 }
@@ -24,6 +26,7 @@ const mapDispatchToProps = function (dispatch) {
     handleChange: function(){
       //you can pass in an argument if necessary
       //dispatch action creator with payload
+      dispatch(console.log('nothing'))
     }
   }
 }

@@ -7,6 +7,14 @@ const { db, User } = require('./database');
 const session = require('express-session');
 const passport = require('passport');
 
+//NODE_ENV is set to development here. This can be updated for production.
+process.env.NODE_ENV = 'development';
+
+if (process.env.NODE_ENV === 'development') {
+  //if NODE_ENV is set to development , process.env will be overwritten
+  //if collaborating you will need to share secrets folder
+  require('../secret/localSecrets'); 
+}
 
 // configure and create the database store so that sessions are saved after restarting server
 const SequelizeStore = require('connect-session-sequelize')(session.Store);

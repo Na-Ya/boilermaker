@@ -14,8 +14,10 @@ const User = db.define('user', {
         }
     },
     password: {
-        type: Sequelize.STRING,
-        allowNull: false
+        type: Sequelize.STRING
+    },
+    google_id: {
+        type: Sequelize.STRING
     },
     salt: {
         type: Sequelize.STRING
